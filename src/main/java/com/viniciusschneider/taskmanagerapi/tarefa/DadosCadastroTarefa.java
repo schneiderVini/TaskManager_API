@@ -1,7 +1,26 @@
 package com.viniciusschneider.taskmanagerapi.tarefa;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 import java.util.Date;
 
-public record DadosCadastroTarefa(String id, String titulo, String descricao, LocalDate dataCriacao, LocalDate dataVencimento, Prioridade prioridade, String status, String responsável, LocalDate dataConclusao) {
+public record DadosCadastroTarefa(
+
+
+        @NotBlank
+        String titulo,
+        String descricao,
+        @NotBlank
+        LocalDate dataCriacao,
+        @NotBlank
+        LocalDate dataVencimento,
+        @NotNull
+        Prioridade prioridade,
+        @NotBlank
+        String status,
+        @NotBlank
+        Long responsavel,
+        LocalDate dataConclusao) {
 }

@@ -31,7 +31,7 @@ public class Tarefa {
     private Prioridade prioridade;
     private String status;
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "responsavel")
     private Usuario responsavel;
     @Column(name = "dataConclusao")
     private LocalDate dataConclusao;

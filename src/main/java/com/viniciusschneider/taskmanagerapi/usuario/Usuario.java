@@ -3,8 +3,8 @@ package com.viniciusschneider.taskmanagerapi.usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "Usuario")
 @Table(name = "usuarios")
+@Entity(name = "Usuario")
 @Getter
 @Setter
 @NoArgsConstructor

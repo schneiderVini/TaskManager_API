@@ -2,17 +2,16 @@ package com.viniciusschneider.taskmanagerapi.controller;
 
 
 import com.viniciusschneider.taskmanagerapi.tarefa.DadosCadastroTarefa;
+import com.viniciusschneider.taskmanagerapi.tarefa.DadosListagemTarefa;
 import com.viniciusschneider.taskmanagerapi.tarefa.Tarefa;
 import com.viniciusschneider.taskmanagerapi.tarefa.TarefaRepository;
 import com.viniciusschneider.taskmanagerapi.usuario.UsuarioService;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("tarefas")
@@ -27,5 +26,9 @@ public class TarefaController {
     public void cadastrar(@RequestBody @Valid DadosCadastroTarefa dados){
         System.out.println(dados);
         repository.save(new Tarefa(dados,usuarioService));
+    }
+    @GetMapping
+    public List<DadosListagemTarefa> listar(){
+        return repository.findAll().stream().map(DadosListagemTarefa::new).toList();
     }
 }

@@ -12,15 +12,15 @@ public record DadosCadastroTarefa(
         @NotBlank
         String titulo,
         String descricao,
-        @NotBlank
+        @NotNull
         LocalDate dataCriacao,
-        @NotBlank
+        @NotNull
         LocalDate dataVencimento,
         @NotNull
         Prioridade prioridade,
         @NotBlank
         String status,
-        @NotBlank
+        @NotNull
         Long responsavel,
         LocalDate dataConclusao) {
 }

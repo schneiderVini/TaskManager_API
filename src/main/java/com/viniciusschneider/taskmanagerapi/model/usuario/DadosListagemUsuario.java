@@ -1,6 +1,4 @@
-package com.viniciusschneider.taskmanagerapi.usuario;
-
-import com.viniciusschneider.taskmanagerapi.tarefa.DadosListagemTarefa;
+package com.viniciusschneider.taskmanagerapi.model.usuario;
 
 public record DadosListagemUsuario(String nome, String email, String senha) {
 

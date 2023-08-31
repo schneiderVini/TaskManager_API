@@ -1,4 +1,4 @@
-package com.viniciusschneider.taskmanagerapi.usuario;
+package com.viniciusschneider.taskmanagerapi.model.usuario;
 
 import jakarta.persistence.*;
 import lombok.*;

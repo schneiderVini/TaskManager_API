@@ -1,7 +1,7 @@
-package com.viniciusschneider.taskmanagerapi.tarefa;
+package com.viniciusschneider.taskmanagerapi.model.tarefa;
 
-import com.viniciusschneider.taskmanagerapi.usuario.Usuario;
-import com.viniciusschneider.taskmanagerapi.usuario.UsuarioService;
+import com.viniciusschneider.taskmanagerapi.model.usuario.Usuario;
+import com.viniciusschneider.taskmanagerapi.model.usuario.UsuarioService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -1,10 +1,9 @@
-package com.viniciusschneider.taskmanagerapi.tarefa;
+package com.viniciusschneider.taskmanagerapi.model.tarefa;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public record DadosCadastroTarefa(
 

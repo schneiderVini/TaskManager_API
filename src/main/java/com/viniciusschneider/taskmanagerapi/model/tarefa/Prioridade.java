@@ -1,4 +1,4 @@
-package com.viniciusschneider.taskmanagerapi.tarefa;
+package com.viniciusschneider.taskmanagerapi.model.tarefa;
 
 public enum Prioridade {
     BAIXA,

@@ -1,14 +1,16 @@
 package com.viniciusschneider.taskmanagerapi.controller;
 
 
-import com.viniciusschneider.taskmanagerapi.tarefa.DadosCadastroTarefa;
-import com.viniciusschneider.taskmanagerapi.tarefa.DadosListagemTarefa;
-import com.viniciusschneider.taskmanagerapi.tarefa.Tarefa;
-import com.viniciusschneider.taskmanagerapi.tarefa.TarefaRepository;
-import com.viniciusschneider.taskmanagerapi.usuario.UsuarioService;
+import com.viniciusschneider.taskmanagerapi.model.tarefa.DadosCadastroTarefa;
+import com.viniciusschneider.taskmanagerapi.model.tarefa.DadosListagemTarefa;
+import com.viniciusschneider.taskmanagerapi.model.tarefa.Tarefa;
+import com.viniciusschneider.taskmanagerapi.model.tarefa.TarefaRepository;
+import com.viniciusschneider.taskmanagerapi.model.usuario.UsuarioService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class TarefaController {
         repository.save(new Tarefa(dados,usuarioService));
     }
     @GetMapping
-    public List<DadosListagemTarefa> listar(){
-        return repository.findAll().stream().map(DadosListagemTarefa::new).toList();
+    public Page<DadosListagemTarefa> listar(Pageable page){
+        return repository.findAll(page).map(DadosListagemTarefa::new);
     }
 }

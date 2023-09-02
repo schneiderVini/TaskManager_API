@@ -1,9 +1,6 @@
 package com.viniciusschneider.taskmanagerapi.controller;
 
-import com.viniciusschneider.taskmanagerapi.model.usuario.DadosCadastroUsuario;
-import com.viniciusschneider.taskmanagerapi.model.usuario.DadosListagemUsuario;
-import com.viniciusschneider.taskmanagerapi.model.usuario.Usuario;
-import com.viniciusschneider.taskmanagerapi.model.usuario.UsuarioRepository;
+import com.viniciusschneider.taskmanagerapi.model.usuario.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("usuarios")
@@ -28,7 +23,19 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public Page<DadosListagemUsuario> listar(@PageableDefault(page = 10, sort = {"titulo"}) Pageable pageable){
-        return repository.findAll(pageable).map(DadosListagemUsuario::new);
+    public Page<DadosListagemUsuario> listar(Pageable paginacao){
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemUsuario::new);
+    }
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoUsuario dados) {
+            var usuario = repository.getReferenceById(dados.id());
+            usuario.atualizaInformacoes(dados);
+    }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        var usuario = repository.getReferenceById(id);
+        usuario.excluir();
     }
 }

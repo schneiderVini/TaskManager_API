@@ -1,5 +1,7 @@
-package com.viniciusschneider.taskmanagerapi.model.usuario;
+package com.viniciusschneider.taskmanagerapi.model.usuario.service;
 
+import com.viniciusschneider.taskmanagerapi.model.usuario.Usuario;
+import com.viniciusschneider.taskmanagerapi.model.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

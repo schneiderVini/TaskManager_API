@@ -1,7 +1,7 @@
 package com.viniciusschneider.taskmanagerapi.model.tarefa;
 
 import com.viniciusschneider.taskmanagerapi.model.usuario.Usuario;
-import com.viniciusschneider.taskmanagerapi.model.usuario.UsuarioService;
+import com.viniciusschneider.taskmanagerapi.model.usuario.service.UsuarioService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -45,5 +45,23 @@ public class Tarefa {
         this.status = dados.status();
         this.responsavel = us.buscaPorId(dados.responsavel());
         this.dataConclusao = dados.dataConclusao();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoTarefa dados) {
+        if(dados.titulo() != null){
+            this.titulo = dados.titulo();
+        }
+        if(dados.descricao() != null) {
+            this.titulo = dados.descricao();
+        }
+        if(dados.responsavel() != null) {
+            this.responsavel =  dados.responsavel();
+        }
+        if(dados.dataConclusao() != null) {
+            this.dataConclusao = dados.dataConclusao();
+        }
+        if(dados.status() != null) {
+            this.status = dados.status();
+        }
     }
 }

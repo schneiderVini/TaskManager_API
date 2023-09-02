@@ -32,8 +32,8 @@ public class TarefaController {
     @PutMapping
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoTarefa dados){
-        var medico = repository.getReferenceById(dados.id());
-        medico.atualizarInformacoes(dados);
+        var tarefa = repository.getReferenceById(dados.id());
+        tarefa.atualizarInformacoes(dados);
     }
 
     @DeleteMapping("/{id}")

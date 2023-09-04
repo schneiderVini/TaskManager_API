@@ -4,11 +4,14 @@ package com.viniciusschneider.taskmanagerapi.controller;
 import com.viniciusschneider.taskmanagerapi.model.tarefa.*;
 import com.viniciusschneider.taskmanagerapi.model.usuario.service.UsuarioService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.ReportAsSingleViolation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("tarefas")
@@ -20,25 +23,37 @@ public class TarefaController {
     private UsuarioService usuarioService;
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroTarefa dados){
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroTarefa dados, UriComponentsBuilder uriBuilder){
         System.out.println(dados);
-        repository.save(new Tarefa(dados,usuarioService));
+        var tarefa = new Tarefa(dados,usuarioService);
+        repository.save(tarefa);
+        var uri = uriBuilder.path("tarefas/{id}").buildAndExpand(tarefa.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
     }
     @GetMapping
-    public Page<DadosListagemTarefa> listar(Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemTarefa::new);
+    public ResponseEntity<Page<DadosListagemTarefa>> listar(Pageable paginacao){
+        var tarefa = repository.findAll(paginacao).map(DadosListagemTarefa::new);
+        return ResponseEntity.ok(tarefa);
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoTarefa dados){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoTarefa dados){
         var tarefa = repository.getReferenceById(dados.id());
         tarefa.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity excluir(@PathVariable Long id){
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+        var tarefa = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
     }
 }

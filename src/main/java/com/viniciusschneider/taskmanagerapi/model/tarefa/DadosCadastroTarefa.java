@@ -12,8 +12,6 @@ public record DadosCadastroTarefa(
         String titulo,
         String descricao,
         @NotNull
-        LocalDate dataCriacao,
-        @NotNull
         LocalDate dataVencimento,
         @NotNull
         Prioridade prioridade,

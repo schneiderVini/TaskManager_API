@@ -39,7 +39,7 @@ public class Tarefa {
     public Tarefa(DadosCadastroTarefa dados, UsuarioService us) {
         this.titulo = dados.titulo();
         this.descricao = dados.descricao();
-        this.dataCriacao = dados.dataCriacao();
+        this.dataCriacao = LocalDate.now();
         this.dataVencimento = dados.dataVencimento();
         this.prioridade = dados.prioridade();
         this.status = dados.status();

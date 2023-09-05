@@ -8,16 +8,16 @@ import java.time.LocalDate;
 public record DadosCadastroTarefa(
 
 
-        @NotBlank
+        @NotBlank(message = ("Título é obrigatório"))
         String titulo,
         String descricao,
         @NotNull
         LocalDate dataVencimento,
-        @NotNull
+        @NotNull(message = ("Prioridade é obrigatória"))
         Prioridade prioridade,
-        @NotBlank
+        @NotBlank(message = ("Status é obrigatório"))
         String status,
-        @NotNull
+        @NotNull(message = ("Reponsável é obrigatório"))
         Long responsavel,
         LocalDate dataConclusao) {
 }

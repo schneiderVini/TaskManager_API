@@ -3,11 +3,11 @@ package com.viniciusschneider.taskmanagerapi.model.usuario;
 import jakarta.validation.constraints.NotBlank;
 
 public record DadosCadastroUsuario(
-        @NotBlank
+        @NotBlank(message = ("Nome é obrigatório"))
         String nome,
-        @NotBlank
+        @NotBlank(message = ("Senha é obrigatória"))
         String senha,
-        @NotBlank
+        @NotBlank(message = ("Email é obrigatório"))
         String email
 ) {
 }

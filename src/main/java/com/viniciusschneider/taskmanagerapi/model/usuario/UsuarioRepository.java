@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Page<Usuario> findAllByAtivoTrue(Pageable pageable);
 
-    UserDetails findByLogin(String username);
+    UserDetails findByLogin(String login);
 }

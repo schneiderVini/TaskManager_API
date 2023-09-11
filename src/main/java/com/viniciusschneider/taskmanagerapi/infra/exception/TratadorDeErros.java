@@ -1,4 +1,4 @@
-package com.viniciusschneider.taskmanagerapi.infra;
+package com.viniciusschneider.taskmanagerapi.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
